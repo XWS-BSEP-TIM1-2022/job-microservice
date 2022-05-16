@@ -6,11 +6,13 @@ import (
 )
 
 type Job struct {
-	Id             primitive.ObjectID `json:"id" bson:"_id,omitempty"`
-	UserId         string             `json:"userId"`
-	Name           string             `json:"name"`
-	Title          string             `json:"title"`
-	StartDate      time.Time          `json:"startDate"`
-	EndDate        time.Time          `json:"endDate"`
-	ExperienceType bool               `json:"experienceType"`
+	Id              primitive.ObjectID `json:"id" bson:"_id,omitempty"`
+	Position        string             `json:"position"`
+	Description     string             `json:"description"`
+	DailyActivities []string           `json:"dailyActivities"`
+	Prerequisites   []string           `json:"prerequisites"`
+	CompanyName     string             `json:"companyName"`
+	CompanyLocation string             `json:"companyLocation"`
+	OpenDate        time.Time          `json:"openDate"`
+	Deleted         bool               `json:"deleted"`
 }

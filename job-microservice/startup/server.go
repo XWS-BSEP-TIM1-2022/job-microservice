@@ -3,6 +3,7 @@ package startup
 import (
 	"context"
 	"fmt"
+	jobService "github.com/XWS-BSEP-TIM1-2022/dislinkt/util/proto/job"
 	"github.com/XWS-BSEP-TIM1-2022/dislinkt/util/tracer"
 	otgo "github.com/opentracing/opentracing-go"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -72,7 +73,7 @@ func (server *Server) startGrpcServer(jobHandler *api.JobHandler) {
 	}
 	grpcServer := grpc.NewServer()
 	log.Println(fmt.Sprintf("started grpc server on localhost:%s", server.config.Port))
-	//////////////userService.RegisterUserServiceServer(grpcServer, jobHandler)
+	jobService.RegisterJobServiceServer(grpcServer, jobHandler)
 	if err := grpcServer.Serve(listener); err != nil {
 		log.Fatalf("failed to serve: %s", err)
 	}

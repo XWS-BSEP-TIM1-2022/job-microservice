@@ -1,98 +1,51 @@
 package api
 
-/*func mapUser(user *model.Job) *userService.User {
-	userPb := &userService.User{
-		Id:          user.Id.Hex(),
-		Name:        user.Name,
-		Surname:     user.Surname,
-		Email:       user.Email,
-		PhoneNumber: user.PhoneNumber,
-		Gender:      int64(user.Gender),
-		BirthDate:   user.BirthDate.String(),
-		Username:    user.Username,
-		Password:    "",
-		Bio:         user.Bio,
-		Skills:      user.Skills,
-		Interests:   user.Interests,
-		Private:     user.Private,
-		Role:        string(user.Role),
-		TFAEnabled:  user.TFAEnabled,
+import (
+	jobService "github.com/XWS-BSEP-TIM1-2022/dislinkt/util/proto/job"
+	"go.mongodb.org/mongo-driver/bson/primitive"
+	"job-microservice/model"
+	"strconv"
+	"strings"
+	"time"
+)
+
+func mapJob(job *model.Job) *jobService.Job {
+	jobPb := &jobService.Job{
+		Id:              job.Id.Hex(),
+		Position:        job.Position,
+		Description:     job.Description,
+		DailyActivities: job.DailyActivities,
+		Prerequisites:   job.Prerequisites,
+		CompanyName:     job.CompanyName,
+		CompanyLocation: job.CompanyLocation,
+		OpenDate:        job.OpenDate.String(),
 	}
-	return userPb
+	return jobPb
 }
-func mapUserPb(userPb *userService.User) *model.User {
-	id, _ := primitive.ObjectIDFromHex(userPb.Id)
+func mapJobPb(jobPb *jobService.Job) *model.Job {
+	id, _ := primitive.ObjectIDFromHex(jobPb.Id)
 	t := time.Now()
-	if userPb.BirthDate != "" {
-		dateString := strings.Split(userPb.BirthDate, "T")
+	if jobPb.OpenDate != "" {
+		dateString := strings.Split(jobPb.OpenDate, " ")
 		date := strings.Split(dateString[0], "-")
 		year, _ := strconv.Atoi(date[0])
 		month, _ := strconv.Atoi(date[1])
 		day, _ := strconv.Atoi(date[2])
-		t = time.Date(year, time.Month(month), day, 12, 0, 0, 0, time.UTC)
-	}
-	user := &model.User{
-		Id:          id,
-		Name:        userPb.Name,
-		Surname:     userPb.Surname,
-		Email:       userPb.Email,
-		PhoneNumber: userPb.PhoneNumber,
-		Gender:      model.Gender(userPb.Gender),
-		BirthDate:   t,
-		Username:    userPb.Username,
-		Password:    userPb.Password,
-		Bio:         userPb.Bio,
-		Skills:      userPb.Skills,
-		Interests:   userPb.Interests,
-		Private:     userPb.Private,
-		Role:        model.UserRole(userPb.Role),
-	}
-	return user
-}
 
-func mapExperience(experience *model.Job) *userService.Experience {
-	experiencePb := &userService.Experience{
-		Id:             experience.Id.Hex(),
-		UserId:         experience.UserId,
-		Name:           experience.Name,
-		Title:          experience.Title,
-		ExperienceType: experience.ExperienceType,
-		StartDate:      experience.StartDate.String(),
-		EndDate:        experience.EndDate.String(),
+		timeString := strings.Split(dateString[1], ":")
+		hour, _ := strconv.Atoi(timeString[0])
+		minutes, _ := strconv.Atoi(timeString[1])
+		t = time.Date(year, time.Month(month), day, hour, minutes, 0, 0, time.UTC)
 	}
-	return experiencePb
+	job := &model.Job{
+		Id:              id,
+		Position:        jobPb.Position,
+		Description:     jobPb.Description,
+		DailyActivities: jobPb.DailyActivities,
+		Prerequisites:   jobPb.Prerequisites,
+		CompanyName:     jobPb.CompanyName,
+		CompanyLocation: jobPb.CompanyLocation,
+		OpenDate:        t,
+	}
+	return job
 }
-
-func mapExperiencePb(experiencePb *userService.Experience) *model.Job {
-	id, _ := primitive.ObjectIDFromHex(experiencePb.Id)
-	start := time.Now()
-	if experiencePb.StartDate != "" {
-		dateString := strings.Split(experiencePb.StartDate, "T")
-		date := strings.Split(dateString[0], "-")
-		year, _ := strconv.Atoi(date[0])
-		month, _ := strconv.Atoi(date[1])
-		day, _ := strconv.Atoi(date[2])
-		start = time.Date(year, time.Month(month), day, 12, 0, 0, 0, time.UTC)
-	}
-
-	end := time.Now()
-	if experiencePb.StartDate != "" {
-		dateString := strings.Split(experiencePb.StartDate, "T")
-		date := strings.Split(dateString[0], "-")
-		year, _ := strconv.Atoi(date[0])
-		month, _ := strconv.Atoi(date[1])
-		day, _ := strconv.Atoi(date[2])
-		end = time.Date(year, time.Month(month), day, 12, 0, 0, 0, time.UTC)
-	}
-	experience := &model.Job{
-		Id:             id,
-		Name:           experiencePb.Name,
-		Title:          experiencePb.Title,
-		UserId:         experiencePb.UserId,
-		ExperienceType: experiencePb.ExperienceType,
-		StartDate:      start,
-		EndDate:        end,
-	}
-	return experience
-}
-*/
