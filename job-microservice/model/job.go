@@ -1,0 +1,16 @@
+package model
+
+import (
+	"go.mongodb.org/mongo-driver/bson/primitive"
+	"time"
+)
+
+type Job struct {
+	Id             primitive.ObjectID `json:"id" bson:"_id,omitempty"`
+	UserId         string             `json:"userId"`
+	Name           string             `json:"name"`
+	Title          string             `json:"title"`
+	StartDate      time.Time          `json:"startDate"`
+	EndDate        time.Time          `json:"endDate"`
+	ExperienceType bool               `json:"experienceType"`
+}
