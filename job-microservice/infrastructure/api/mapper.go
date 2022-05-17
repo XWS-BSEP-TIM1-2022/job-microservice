@@ -12,6 +12,7 @@ import (
 func mapJob(job *model.Job) *jobService.Job {
 	jobPb := &jobService.Job{
 		Id:              job.Id.Hex(),
+		UserId:          job.UserID,
 		Position:        job.Position,
 		Description:     job.Description,
 		DailyActivities: job.DailyActivities,
@@ -39,6 +40,7 @@ func mapJobPb(jobPb *jobService.Job) *model.Job {
 	}
 	job := &model.Job{
 		Id:              id,
+		UserID:          jobPb.UserId,
 		Position:        jobPb.Position,
 		Description:     jobPb.Description,
 		DailyActivities: jobPb.DailyActivities,

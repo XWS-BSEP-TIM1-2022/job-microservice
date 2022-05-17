@@ -7,6 +7,7 @@ import (
 
 type Job struct {
 	Id              primitive.ObjectID `json:"id" bson:"_id,omitempty"`
+	UserID          string             `json:"userId"`
 	Position        string             `json:"position"`
 	Description     string             `json:"description"`
 	DailyActivities []string           `json:"dailyActivities"`
