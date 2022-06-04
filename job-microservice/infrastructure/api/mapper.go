@@ -27,7 +27,7 @@ func mapJobPb(jobPb *jobService.Job) *model.Job {
 	id, _ := primitive.ObjectIDFromHex(jobPb.Id)
 	t := time.Now()
 	if jobPb.OpenDate != "" {
-		dateString := strings.Split(jobPb.OpenDate, " ")
+		dateString := strings.Split(jobPb.OpenDate, "T")
 		date := strings.Split(dateString[0], "-")
 		year, _ := strconv.Atoi(date[0])
 		month, _ := strconv.Atoi(date[1])
