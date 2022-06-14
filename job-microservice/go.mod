@@ -6,23 +6,24 @@ replace github.com/XWS-BSEP-TIM1-2022/dislinkt/util => ./../../util
 
 require (
 	github.com/XWS-BSEP-TIM1-2022/dislinkt/util v0.0.0-00010101000000-000000000000
-	github.com/dgryski/dgoogauth v0.0.0-20190221195224-5a805980a5f3
+	github.com/lestrrat-go/file-rotatelogs v2.4.0+incompatible
 	github.com/opentracing/opentracing-go v1.2.0
+	github.com/sirupsen/logrus v1.4.2
 	go.mongodb.org/mongo-driver v1.9.1
-	golang.org/x/exp v0.0.0-20220428152302-39d4317da171
 	google.golang.org/grpc v1.46.2
-	rsc.io/qr v0.2.0
 )
 
 require (
 	github.com/go-stack/stack v1.8.0 // indirect
-	github.com/golang-jwt/jwt v3.2.2+incompatible // indirect
 	github.com/golang/glog v1.0.0 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/golang/snappy v0.0.1 // indirect
 	github.com/grpc-ecosystem/go-grpc-middleware v1.3.0 // indirect
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.10.0 // indirect
+	github.com/jonboulle/clockwork v0.3.0 // indirect
 	github.com/klauspost/compress v1.13.6 // indirect
+	github.com/konsorten/go-windows-terminal-sequences v1.0.1 // indirect
+	github.com/lestrrat-go/strftime v1.0.6 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/uber/jaeger-client-go v2.30.0+incompatible // indirect
 	github.com/uber/jaeger-lib v2.4.1+incompatible // indirect
